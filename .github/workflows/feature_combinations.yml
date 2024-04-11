@@ -1,0 +1,49 @@
+name: Feature Combinations Log
+
+on: [push, workflow_dispatch]
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        categories:
+          [
+            "Basic_Structural",
+            "Construction_Materials",
+            "Superstructure_Materials",
+            "Usage_and_Legal",
+            "Basic_Structural Construction_Materials",
+            "Basic_Structural Superstructure_Materials",
+            "Basic_Structural Usage_and_Legal",
+            "Construction_Materials Superstructure_Materials",
+            "Construction_Materials Usage_and_Legal",
+            "Superstructure_Materials Usage_and_Legal",
+            "Basic_Structural Construction_Materials Superstructure_Materials",
+            "Basic_Structural Construction_Materials Usage_and_Legal",
+            "Basic_Structural Superstructure_Materials Usage_and_Legal",
+            "Construction_Materials Superstructure_Materials Usage_and_Legal",
+            "Basic_Structural Construction_Materials Superstructure_Materials Usage_and_Legal",
+          ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          echo "Dependencies installed from requirements.txt"
+
+      - name: Run script with category combination
+        run: python main.py ${{ matrix.categories }}
+
+      - name: Log output
+        run: echo ${{ matrix.categories }}
