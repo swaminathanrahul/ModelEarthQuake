@@ -1,5 +1,5 @@
-from model_train import train_model
-from prepare_data import preprocess_data
+from src.model import train_model
+from src.prepare_data import preprocess_data
 
 
 def generate_prediction(X_train, X_test, y_train, selected_features, param_grid):

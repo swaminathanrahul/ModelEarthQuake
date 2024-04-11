@@ -5,7 +5,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.ensemble import RandomForestClassifier
 
 # Set the data directory path
-DATA_DIR = Path('..', 'data', 'raw')
+DATA_DIR = Path('.', 'data', 'raw')
 
 
 def load_data():

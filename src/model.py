@@ -1,6 +1,6 @@
 # Import necessary libraries and functions
 from sklearn.model_selection import GridSearchCV
-from prepare_data import create_pipeline
+from src.prepare_data import create_pipeline
 
 
 def train_model(X, y, param_grid):
