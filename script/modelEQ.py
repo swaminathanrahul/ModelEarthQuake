@@ -65,7 +65,6 @@ f1_score(train_labels, in_sample_preds, average='micro')
 
 test_values = pd.read_csv(DATA_DIR / 'test_values.csv', index_col='building_id')
 
-
 test_values_subset = test_values[selected_features]
 test_values_subset = pd.get_dummies(test_values_subset)
 
@@ -78,3 +77,34 @@ my_submission = pd.DataFrame(data=predictions,
                              index=submission_format.index)
 
 my_submission.head()
+
+
+
+
+
+
+predictions = gs.predict(train_values_subset)
+
+# Importing all necessary libraries
+from sklearn.metrics import accuracy_score
+# Calculating the accuracy of classifier
+print(f"Accuracy of the classifier is: {accuracy_score(train_labels.values.ravel(), predictions)}")
+
+
+# Importing all necessary libraries
+from sklearn.metrics import precision_score
+
+# Calculating the precision score of classifier
+print(f"Precision Score of the classifier is: {precision_score(train_labels.values.ravel(), predictions, average='micro')}")
+
+# Importing all necessary libraries
+from sklearn.metrics import recall_score
+
+# Calculating the recall score of classifier
+print(f"Recall Score of the classifier is: {recall_score(train_labels.values.ravel(), predictions,average='micro')}")
+
+# Importing all necessary libraries
+from sklearn.metrics import f1_score
+
+# Calculating the F1 score of classifier
+print(f"F1 Score of the classifier is: {f1_score(train_labels.values.ravel(), predictions, average='micro')}")
