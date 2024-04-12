@@ -4,7 +4,7 @@ from pandas_profiling import ProfileReport
 
 def create_profile(train_labels, train_values):
     # Convert dictionary to DataFrame
-    df = pd.concat(train_labels, train_values, axis=1)
+    df = pd.concat([train_labels, train_values], axis=1)
 
     # Generate the profile report
     profile = ProfileReport(
