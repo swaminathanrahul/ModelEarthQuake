@@ -1,5 +1,3 @@
-
-pandas
-scikit-learn
-pandas-profiling
-pydantic-settings
+pandas==2.2.2
+scikit-learn==1.4.2
+pandas-profiling>=3.0.0
