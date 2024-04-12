@@ -46,8 +46,25 @@ jobs:
       - name: Run script with category combination
         run: python main.py ${{ matrix.categories }} > "dist/result-${{ matrix.categories }}.txt"
 
-      - name: Upload Results and Submission
+  package_and_upload:
+    needs: run_script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: dist
+
+      - name: Zip all results
+        run: |
+          cd dist
+          zip -r ../final-results.zip .
+
+      - name: Upload final ZIP
         uses: actions/upload-artifact@v2
         with:
-          name: results-and-submission-${{ matrix.categories }}
-          path: dist/
+          name: final-results
+          path: final-results.zip
