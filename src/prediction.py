@@ -9,10 +9,6 @@ def generate_prediction(X_train, X_test, y_train, selected_features, param_grid)
 
     gs = train_model(X_train_subset, y_train, param_grid)
 
-<<<<<<< Updated upstream
-    return gs.predict(X_test_subset)
-=======
     create_profile(X_train_subset, y_train)
 
     return gs, gs.predict(X_test_subset)
->>>>>>> Stashed changes
