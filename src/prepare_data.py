@@ -20,8 +20,6 @@ def load_data():
 
 
 def preprocess_data(values, selected_features):
-    selected_features = list(set(selected_features))
-
     # Filter the data for selected features and apply one-hot encoding
     values_subset = values[selected_features]
     values_subset = pd.get_dummies(values_subset)

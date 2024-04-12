@@ -6,6 +6,11 @@ def generate_submission(predictions, *categories):
     submission_format = pd.read_csv(
         DATA_DIR / 'submission_format.csv', index_col='building_id')
 
+    required_length = len(submission_format)
+
+    if len(predictions) > required_length:
+        predictions = predictions[:required_length]  # Truncate if too long
+
     categories_str = '_'.join(categories).replace(
         ' ', '_')  # Replace spaces with underscores if any
 
