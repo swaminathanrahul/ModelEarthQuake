@@ -8,4 +8,4 @@ def generate_prediction(X_train, X_test, y_train, selected_features, param_grid)
 
     gs = train_model(X_train_subset, y_train, param_grid)
 
-    return gs.predict(X_test_subset)
+    return gs, gs.predict(X_test_subset)
