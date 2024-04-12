@@ -46,42 +46,25 @@ jobs:
       - name: Run script with category combination
         run: python main.py ${{ matrix.categories }} > "dist/result-${{ matrix.categories }}.txt"
 
-      - name: Upload Results and Submission
-        uses: actions/upload-artifact@v2
-        with:
-          name: results-and-submission-${{ matrix.categories }}
-          path: dist/
-
-  gather_best_result:
+  package_and_upload:
     needs: run_script
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Download all results and submissions
+      - name: Download all artifacts
         uses: actions/download-artifact@v2
         with:
-          path: downloaded-results
+          path: dist
 
-      - name: Find Best Result
+      - name: Zip all results
         run: |
-          mkdir results
-          cat downloaded-results/*.txt > results/all_results.txt
-          awk -F ':' '/Score/{print $2}' downloaded-results/*.txt | sort -n | tail -1 > results/best_score.txt
-          grep -Ff results/best_score.txt downloaded-results/*.txt > results/best_result.txt
-          best_result_file=$(grep -Flf results/best_score.txt downloaded-results/*.txt)
-          cp "${best_result_file%.*}.csv" results/submission_best.csv
+          cd dist
+          zip -r ../final-results.zip .
 
-      - name: Display Overview and Best Result
-        run: |
-          echo "Overview of All Results:"
-          cat results/all_results.txt
-          echo "Best Result:"
-          cat results/best_result.txt
-
-      - name: Upload Artifacts
+      - name: Upload final ZIP
         uses: actions/upload-artifact@v2
         with:
-          name: aggregated-results
-          path: results/
+          name: final-results
+          path: final-results.zip
