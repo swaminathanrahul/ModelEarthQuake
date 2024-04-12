@@ -51,6 +51,7 @@ jobs:
         with:
           name: results-and-submission-${{ matrix.categories }}
           path: dist/
+<<<<<<< Updated upstream
 
   gather_best_result:
     needs: run_script
@@ -91,3 +92,5 @@ jobs:
         with:
           name: aggregated-results
           path: results/
+=======
+>>>>>>> Stashed changes
