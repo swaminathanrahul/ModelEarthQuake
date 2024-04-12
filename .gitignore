@@ -161,4 +161,5 @@ cython_debug/
 
 ## ignoring mac files
 .DS_Store
+data/.DS_Store
 **/.DS_Store
