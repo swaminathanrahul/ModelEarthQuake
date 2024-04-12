@@ -18,6 +18,4 @@ def evaluate_model(selected_features, param_grid):
 
     test_f1_score = f1_score(sub_test_labels, test_preds, average='micro')
 
-    print("Test F1 Score:", test_f1_score)
-
     return test_preds, test_f1_score

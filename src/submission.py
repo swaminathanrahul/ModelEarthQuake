@@ -10,11 +10,8 @@ def generate_submission(predictions):
     # Adjust predictions to match required length
     if len(predictions) > required_length:
         predictions = predictions[:required_length]  # Truncate if too long
-    elif len(predictions) < required_length:
-        # Extend with default_value if too short
-        predictions += [default_value] * (required_length - len(predictions))
 
     result = pd.DataFrame(
         data=predictions, columns=submission_format.columns, index=submission_format.index)
 
-    result.to_csv('submission.csv', index=True)
+    result.to_csv('dist/submission.csv', index=True)
