@@ -29,5 +29,5 @@ def preprocess_data(values, selected_features):
 def create_pipeline():
     # Create a machine learning pipeline with StandardScaler and RandomForestClassifier
     pipe = make_pipeline(
-        StandardScaler(), RandomForestClassifier(random_state=2018))
+        StandardScaler(), RandomForestClassifier(n_jobs=10, class_weight='balanced', random_state=2018))
     return pipe
